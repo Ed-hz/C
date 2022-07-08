@@ -1,0 +1,20 @@
+密码安全伪随机数生成器
+密码学安全伪随机数生成器（cryptographically secure pseudo-random number generator，CSPRNG），也称为密码学伪随机数生成器（cryptographic pseudo-random number generator，CPRNG），是一种特殊的伪随机数生成器。它需要满足满足一些必要的特性，以便于适合于密码学应用。
+密码学的很多方面都需要随机数
+1. 密钥生成
+2. 生成初始化向量，IV，用于分组密码的 CBC，CFB，OFB 模式
+3. nounce，用于防止重放攻击以及分组密码的 CTR 模式等、
+4. one-time pads
+5. 某些签名方案中的盐，如 ECDSA， RSASSA-PSS
+密码学安全伪随机数生成器的要求肯定比一般的伪随机数生成器要高。一般而言，CSPRNG 的要求可以分为两类
+1. 通过统计随机性测试。CSPRNG 必须通过 next-bit test，也就是说，知道了一个序列的前 k 个比特，攻击者不可能在多项式时间内以大于 50% 的概率预测出来下一个比特位。这里特别提及一点，姚期智曾在 1982 年证明，如果一个生成器可以通过 next-bit test，那么它也可以通过所有其他的多项式时间统计测试。
+2. 必须能够抵抗足够强的攻击，比如当生成器的部分初始状态或者运行时的状态被攻击者获知时，攻击者仍然不能够获取泄漏状态之前的生成的随机数。
+CSPRNG 的设计可以分为以下三类
+1. 基于密码学算法，如密文或者哈希值。
+2. 基于数学难题
+3. 某些特殊目的的设计
+Mersenne Twister是由Makoto Matsumoto ( Makoto Matsumoto )和Takuji Nishimura ( Takuji Nishimura )于 1997 年开发的通用伪随机数发生器 (PRNG) 。它的名字来源于它的时代长度被选为梅森素数。
+整个算法分为三个阶段（如图所示）：
+第一阶段：初始化，获得基础的梅森旋转链；
+第二阶段：对于旋转链进行旋转算法；
+第三阶段：对于旋转算法所得的结果进行处理；

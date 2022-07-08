@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.secure.practice.mapper.CertificateMapper">
+
+    <select id="countApplyByUsername" resultType="java.lang.Integer">
+        select count(cid) from t_ca where username = #{username} and `state` = 0;
+    </select>
+
+    <select id="countCaByUidForUser" resultType="java.lang.Integer">
+        select count(cid) from t_ca where uid=#{uid} and `state` != 0 and `state` != 2;
+    </select>
+
+
+    <select id="countApplyByUidForUser" resultType="java.lang.Integer">
+        select count(cid) from t_ca where uid=#{uid} and `state` != 1 and `state` != 3;
+    </select>
+
+    <select id="countApply" resultType="java.lang.Integer">
+        select count(cid) from t_ca where `state` = 0;
+    </select>
+
+    <select id="countCa" resultType="java.lang.Integer">
+        select count(cid) from t_ca where `state` != 0 and `state` != 2;
+    </select>
+
+</mapper>

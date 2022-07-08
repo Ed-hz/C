@@ -1,0 +1,8 @@
+移位密码（Shift Cipher），其基础式数论中的模运算。通过将明文字符按照字母表的顺序进行左循环或者右循环的移位进行加密，该密码体制的密钥空间很小，只有27种（27表示26个英文字母+空格）可能的情况。很容易通过穷尽密钥搜索攻击破解。
+加密时，通过e(x) = (x + key)mod27完成；解密时，通过d(y) = (y - key)mod27完成。
+加解密示例：
+字母表：abcdefghijklmnopqrstuvwxyz
+假设key=11，表示明文中的字符都按字母表中的顺序循环向右移11位
+明文：we will meet at midnight
+w-->h,e-->p,...
+密文：gpkgtwwkxppdkldkxtoytrsd
